@@ -28,11 +28,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 
 @Composable
-fun YelpScreen() {
+fun YelpScreen(modifier: Modifier = Modifier) {
     val viewModel: YelpViewModel = viewModel()
     val businesses = viewModel.businesses.value
 
     LazyColumn(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(businesses) {

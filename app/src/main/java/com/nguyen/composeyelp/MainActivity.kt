@@ -19,8 +19,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ComposeYelpTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) {
-                    YelpScreen()
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    YelpScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

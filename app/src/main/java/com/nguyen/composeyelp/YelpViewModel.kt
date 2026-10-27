@@ -10,7 +10,7 @@ class YelpViewModel : ViewModel() {
     val businesses = mutableStateOf(listOf<Business>())
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             businesses.value = YelpRepository.searchBusinesses("Bearer ${BuildConfig.YELP_API_KEY}", "Pizza", "San Francisco")
         }
     }
