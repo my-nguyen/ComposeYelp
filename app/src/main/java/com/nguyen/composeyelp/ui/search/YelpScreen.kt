@@ -126,9 +126,8 @@ fun SearchBar(
 
 @Composable
 fun YelpContent(uiState: YelpUiState, modifier: Modifier = Modifier, onRetry: () -> Unit = {}) {
-    // There's no loading or error state. The screen just stays empty until the data arrives, or for
-    // good if the request fails. A small sealed state type (Loading / Success(list) / Error(message))
-    // would let YelpScreen show a spinner or an error message.
+    // A small sealed state type (Loading / Success(list) / Error(message)) would let YelpScreen
+    // show a spinner or an error message.
     when (uiState) {
         is YelpUiState.Idle -> {
             Box(modifier = modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {

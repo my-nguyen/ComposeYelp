@@ -5,7 +5,7 @@ import com.nguyen.composeyelp.data.model.Category
 import com.nguyen.composeyelp.data.model.Location
 import com.nguyen.composeyelp.data.model.YelpResult
 
-class FakeYelpApi : YelpService.Service {
+class FakeYelpApi : YelpApi {
     data class Request(val auth: String, val term: String, val location: String)
 
     val requests = mutableListOf<Request>()

@@ -1,6 +1,6 @@
 package com.nguyen.composeyelp.di
 
-import com.nguyen.composeyelp.data.remote.YelpService
+import com.nguyen.composeyelp.data.remote.YelpApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,5 +23,5 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideYelpApi(retrofit: Retrofit): YelpService.Service = retrofit.create(YelpService.Service::class.java)
+    fun provideYelpApi(retrofit: Retrofit): YelpApi = retrofit.create(YelpApi::class.java)
 }
