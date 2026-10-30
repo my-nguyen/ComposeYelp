@@ -5,16 +5,18 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.nguyen.composeyelp.data.model.Business
+import com.nguyen.composeyelp.data.remote.RetrofitClient
+import com.nguyen.composeyelp.data.remote.YelpService
 import com.nguyen.composeyelp.data.repository.YelpRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
-import javax.inject.Inject
 
 sealed interface YelpUiState {
     data object Idle : YelpUiState
@@ -23,8 +25,7 @@ sealed interface YelpUiState {
     data class Error(val message: String) : YelpUiState
 }
 
-@HiltViewModel
-class YelpViewModel @Inject constructor(private val repository: YelpRepository) : ViewModel() {
+class YelpViewModel(private val repository: YelpRepository) : ViewModel() {
     private val _uiState = mutableStateOf<YelpUiState>(YelpUiState.Idle)
     val uiState: State<YelpUiState> = _uiState
 
@@ -73,5 +74,9 @@ class YelpViewModel @Inject constructor(private val repository: YelpRepository) 
 
     companion object {
         private const val TAG = "YelpViewModel"
+
+        val Factory = viewModelFactory {
+            initializer { YelpViewModel(YelpRepository(YelpService(RetrofitClient.yelpApi))) }
+        }
     }
 }

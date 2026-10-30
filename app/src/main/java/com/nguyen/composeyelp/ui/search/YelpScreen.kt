@@ -40,7 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import com.nguyen.composeyelp.R
 import com.nguyen.composeyelp.data.model.Business
@@ -50,7 +50,7 @@ import com.nguyen.composeyelp.data.model.Location
 @Composable
 fun YelpScreen(
     modifier: Modifier = Modifier,
-    viewModel: YelpViewModel = hiltViewModel()
+    viewModel: YelpViewModel = viewModel(factory = YelpViewModel.Factory)
 ) {
     var term by rememberSaveable { mutableStateOf("") }
     var location by rememberSaveable { mutableStateOf("") }
